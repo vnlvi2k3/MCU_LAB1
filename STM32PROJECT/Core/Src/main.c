@@ -110,11 +110,11 @@ int main(void)
   while (1)
   {
 	  HAL_GPIO_TogglePin(GPIOA, pins[count]);
-	  HAL_Delay(1000);
 	  count ++;
 	  if(count >= 12){
 		  count = 0;
 	  }
+	  HAL_Delay(1000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
