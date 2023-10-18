@@ -91,73 +91,73 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  enum lightState {RED1_GREEN2, RED1_YELLOW2, GREEN1_RED2, YELLOW1_RED2,};
+  enum lightState {RED1_GREEN2, RED1_YELLOW2, GREEN1_RED2, YELLOW1_RED2};
   enum lightState curr_state = RED1_GREEN2;
   enum lightState next_state = curr_state;
-  int count = 3;
-  HAL_GPIO_WritePin(RED1_GPIO_Port, RED1_Pin, GPIO_PIN_SET);
-  HAL_GPIO_WritePin(YELLOW1_GPIO_Port, YELLOW1_Pin, GPIO_PIN_SET);
-  HAL_GPIO_WritePin(GREEN1_GPIO_Port, GREEN1_Pin, GPIO_PIN_SET);
-  HAL_GPIO_WritePin(RED2_GPIO_Port, RED2_Pin, GPIO_PIN_SET);
-  HAL_GPIO_WritePin(YELLOW2_GPIO_Port, YELLOW2_Pin, GPIO_PIN_SET);
-  HAL_GPIO_WritePin(GREEN2_GPIO_Port, GREEN2_Pin, GPIO_PIN_SET);
+  int count = 300;
+  HAL_GPIO_WritePin(GPIOA, RED1_Pin, SET);
+  HAL_GPIO_WritePin(GPIOA, YELLOW1_Pin, SET);
+  HAL_GPIO_WritePin(GPIOA, GREEN1_Pin, SET);
+  HAL_GPIO_WritePin(GPIOA, RED2_Pin, SET);
+  HAL_GPIO_WritePin(GPIOA, YELLOW2_Pin, SET);
+  HAL_GPIO_WritePin(GPIOA, GREEN2_Pin, SET);
   while (1)
   {
-	  if(count > 0) count--;
+	  if(count > 0) count --;
 	  switch(curr_state){
 	  case RED1_GREEN2:
-		  HAL_GPIO_WritePin(RED1_GPIO_Port, RED1_Pin, GPIO_PIN_RESET);
-		  HAL_GPIO_WritePin(YELLOW1_GPIO_Port, YELLOW1_Pin, GPIO_PIN_SET);
-		  HAL_GPIO_WritePin(GREEN1_GPIO_Port, GREEN1_Pin, GPIO_PIN_SET);
-		  HAL_GPIO_WritePin(RED2_GPIO_Port, RED2_Pin, GPIO_PIN_SET);
-		  HAL_GPIO_WritePin(YELLOW2_GPIO_Port, YELLOW2_Pin, GPIO_PIN_SET);
-		  HAL_GPIO_WritePin(GREEN2_GPIO_Port, GREEN2_Pin, GPIO_PIN_RESET);
-          if(count <= 0){
-              next_state = RED1_YELLOW2;
-              count = 2;
-          }
+		  HAL_GPIO_WritePin(GPIOA, RED1_Pin, RESET);
+		  HAL_GPIO_WritePin(GPIOA, YELLOW1_Pin, SET);
+		  HAL_GPIO_WritePin(GPIOA, GREEN1_Pin, SET);
+		  HAL_GPIO_WritePin(GPIOA, RED2_Pin, SET);
+		  HAL_GPIO_WritePin(GPIOA, YELLOW2_Pin, SET);
+		  HAL_GPIO_WritePin(GPIOA, GREEN2_Pin, RESET);
+		  if(count <= 0){
+			  next_state = RED1_YELLOW2;
+			  count = 200;
+		  }
 		  break;
 	  case RED1_YELLOW2:
-		  HAL_GPIO_WritePin(RED1_GPIO_Port, RED1_Pin, GPIO_PIN_RESET);
-		  HAL_GPIO_WritePin(YELLOW1_GPIO_Port, YELLOW1_Pin, GPIO_PIN_SET);
-		  HAL_GPIO_WritePin(GREEN1_GPIO_Port, GREEN1_Pin, GPIO_PIN_SET);
-		  HAL_GPIO_WritePin(RED2_GPIO_Port, RED2_Pin, GPIO_PIN_SET);
-		  HAL_GPIO_WritePin(YELLOW2_GPIO_Port, YELLOW2_Pin, GPIO_PIN_RESET);
-		  HAL_GPIO_WritePin(GREEN2_GPIO_Port, GREEN2_Pin, GPIO_PIN_SET);
-          if(count <= 0){
-              next_state = GREEN1_RED2;
-              count = 3;
-          }
+		  HAL_GPIO_WritePin(GPIOA, RED1_Pin, RESET);
+		  HAL_GPIO_WritePin(GPIOA, YELLOW1_Pin, SET);
+		  HAL_GPIO_WritePin(GPIOA, GREEN1_Pin, SET);
+		  HAL_GPIO_WritePin(GPIOA, RED2_Pin, SET);
+		  HAL_GPIO_WritePin(GPIOA, YELLOW2_Pin, RESET);
+		  HAL_GPIO_WritePin(GPIOA, GREEN2_Pin, SET);
+		  if(count <= 0){
+			  next_state = GREEN1_RED2;
+			  count = 300;
+		  }
 		  break;
-	  case 2:
-		  HAL_GPIO_WritePin(RED1_GPIO_Port, RED1_Pin, GPIO_PIN_SET);
-		  HAL_GPIO_WritePin(YELLOW1_GPIO_Port, YELLOW1_Pin, GPIO_PIN_SET);
-		  HAL_GPIO_WritePin(GREEN1_GPIO_Port, GREEN1_Pin, GPIO_PIN_RESET);
-		  HAL_GPIO_WritePin(RED2_GPIO_Port, RED2_Pin, GPIO_PIN_RESET);
-		  HAL_GPIO_WritePin(YELLOW2_GPIO_Port, YELLOW2_Pin, GPIO_PIN_SET);
-		  HAL_GPIO_WritePin(GREEN2_GPIO_Port, GREEN2_Pin, GPIO_PIN_SET);
-          if(count <= 0){
-              next_state = YELLOW1_RED2;
-              count = 2;
-          }
+	  case GREEN1_RED2:
+		  HAL_GPIO_WritePin(GPIOA, RED1_Pin, SET);
+		  HAL_GPIO_WritePin(GPIOA, YELLOW1_Pin, SET);
+		  HAL_GPIO_WritePin(GPIOA, GREEN1_Pin, RESET);
+		  HAL_GPIO_WritePin(GPIOA, RED2_Pin, RESET);
+		  HAL_GPIO_WritePin(GPIOA, YELLOW2_Pin, SET);
+		  HAL_GPIO_WritePin(GPIOA, GREEN2_Pin, SET);
+		  if(count <= 0){
+			  next_state = YELLOW1_RED2;
+			  count = 200;
+		  }
 		  break;
 	  case YELLOW1_RED2:
-		  HAL_GPIO_WritePin(RED1_GPIO_Port, RED1_Pin, GPIO_PIN_SET);
-		  HAL_GPIO_WritePin(YELLOW1_GPIO_Port, YELLOW1_Pin, GPIO_PIN_RESET);
-		  HAL_GPIO_WritePin(GREEN1_GPIO_Port, GREEN1_Pin, GPIO_PIN_SET);
-		  HAL_GPIO_WritePin(RED2_GPIO_Port, RED2_Pin, GPIO_PIN_RESET);
-		  HAL_GPIO_WritePin(YELLOW2_GPIO_Port, YELLOW2_Pin, GPIO_PIN_SET);
-		  HAL_GPIO_WritePin(GREEN2_GPIO_Port, GREEN2_Pin, GPIO_PIN_SET);
-          if(count <= 0){
-              next_state = RED1_GREEN2;
-              count = 3;
-          }
+		  HAL_GPIO_WritePin(GPIOA, RED1_Pin, SET);
+		  HAL_GPIO_WritePin(GPIOA, YELLOW1_Pin, RESET);
+		  HAL_GPIO_WritePin(GPIOA, GREEN1_Pin, SET);
+		  HAL_GPIO_WritePin(GPIOA, RED2_Pin, RESET);
+		  HAL_GPIO_WritePin(GPIOA, YELLOW2_Pin, SET);
+		  HAL_GPIO_WritePin(GPIOA, GREEN2_Pin, SET);
+		  if(count <= 0){
+			  next_state = RED1_GREEN2;
+			  count = 300;
+		  }
 		  break;
 	  default:
 		  break;
 	  }
 	  curr_state = next_state;
-	  HAL_Delay(1000);
+	  HAL_Delay(10);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
